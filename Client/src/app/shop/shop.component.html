@@ -1,0 +1,171 @@
+<div class="site-wrap">
+  <div class="site-section">
+    <div class="container">
+
+      <div class="row mb-5">
+        <div class="col-md-9 order-2">
+
+          <div class="row">
+            <div class="col-md-12 mb-5">
+              <div class="float-md-left mb-4">
+                <h2 class="text-black h5">
+                  <div class="d-flex align-content-center align-items-center">
+                    <app-paging-header [totalCount]="totalCount" [pageIndex]="shopParams.pageIndex"
+                      [pageSize]="shopParams.pageSize">
+                    </app-paging-header>
+                    <i (click)="clearFilters()" class="fa fa-times-circle text-danger fa-lg ml-2"
+                      style=" vertical-align: middle; cursor: pointer;"></i>
+                  </div>
+
+                </h2>
+              </div>
+              <div class="d-flex">
+                <div class="dropdown mr-1 ml-md-auto">
+                  <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Latest
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <ng-container *ngFor="let item of this.brands">
+                      <a style="cursor: pointer;" class="dropdown-item"
+                        (click)="onBrandSelected(item?.id)">{{item?.name}}</a>
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference"
+                    data-toggle="dropdown">Sort</button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortNameAsc()">Name, A to Z</a>
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortNameDesc()">Name, Z to A</a>
+                    <div class="dropdown-divider"></div>
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortPriceAsc()">Price, low to high</a>
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortPriceDesc()">Price, high to low</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-5">
+
+            <!-- Product Card  -->
+            <div *ngFor="let item of products" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <app-product-card [product]="item"></app-product-card>
+            </div>
+            <!-- End of Product Card  -->
+
+          </div>
+          <div class="row" data-aos="fade-up">
+            <div class="col-md-12 text-center">
+              <div class="site-block-27">
+                <div *ngIf="totalCount>0" class="d-flex justify-content-center">
+                  <app-pager [totalCount]="totalCount" [pageSize]="shopParams?.pageSize"
+                    (pageChanged)="onPageChanged($event)">
+                  </app-pager>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 order-1 mb-5 mb-md-0">
+          <div class="border p-4 rounded mb-4">
+
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+            <ul class="list-unstyled mb-0">
+              <ng-container *ngFor="let item of this.typesCountResult">
+                <li class="mb-1">
+                  <a (click)="onTypeSelected(item.id)"
+                    [ngClass]="{'font-weight-bold':item?.id === this.shopParams?.typeId}" class="d-flex"
+                    style="cursor: pointer;">
+                    <span>{{item.name}}</span>
+                    <span class="text-black ml-auto">({{item?.count??0}})</span>
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+
+          <div class="border p-4 rounded mb-4">
+            <div class="mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+
+              <ngx-slider (userChangeEnd)="priceRangeChanged()" [(value)]="this.minValue" [(highValue)]="this.maxValue"
+                [options]="options"></ngx-slider>
+            </div>
+
+
+
+            <div class="mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+
+              <ng-container *ngFor="let item of colors">
+                <a (click)="onColorSelected(item?.color)" class="d-flex color-item align-items-center mt-1"
+                  [ngClass]="{'font-weight-bold':item?.color === this.shopParams?.color}" style="cursor: pointer;">
+                  <span class="color d-inline-block rounded-circle mr-2"
+                    [ngStyle]="{'background':item?.color.replace(' ', '').toLowerCase()}"></span>
+                  <span class="text-black">{{item?.color}} </span>
+                  <span>({{item.count}})</span>
+                </a>
+              </ng-container>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="site-section site-blocks-2">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-7 site-section-heading text-center pt-4">
+                  <h2>Top Collections</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+                  <a style="cursor: pointer;" class="block-2-item" (click)="onTypeSelected(4)">
+                    <figure class="image">
+                      <img src="https://i.pinimg.com/originals/4b/3f/37/4b3f378cd6d8063462fdc1f74a949bfc.jpg" alt=""
+                        class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Sofas</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+                  <a style="cursor: pointer;" class="block-2-item" (click)="onTypeSelected(1)">
+                    <figure class="image">
+                      <img
+                        src="https://assets.weimgs.com/weimgs/ab/images/wcm/products/202151/0014/emmett-bed-wood-legs-1-z.jpg"
+                        alt="" class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Beds</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+                  <a style="cursor: pointer;" class="block-2-item" (click)="onTypeSelected(2)">
+                    <figure class="image">
+                      <img src="https://www.refinery29.com/images/10826698.png" alt="" class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Chairs</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

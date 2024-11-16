@@ -1,0 +1,65 @@
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-3 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+          width="150px" height="150px" [src]="(currentUser$ | async).profilePicture"><span
+          class="font-weight-bold">{{(currentUser$ | async).username}}</span><span class="text-black-50">{{(currentUser$
+          | async).email}}</span><span>
+        </span>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="openModal(template)">Update Profile Image</button>
+
+      <ng-template #template>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Profile Image</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <figure class="figure">
+            <img [src]="(currentUser$ | async).profilePicture" class="figure-img img-fluid rounded"
+              alt="A generic square placeholder image with rounded corners in a figure.">
+            <form>
+              <div class="form-group">
+                <input #file type="file">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-danger btn-block btn-lg" (click)="uploadFile(file.files)">Change Profile
+                  Picture</button>
+              </div>
+            </form>
+          </figure>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-md-8 border-right">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Profile Settings</h4>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control"
+              placeholder="first name" [value]="(currentUser$ | async).username || ''" disabled></div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control"
+              placeholder="enter phone number" (change)="mobileChanged($event)"
+              [value]="(currentUser$ | async).mobileNumber || ''"></div>
+          <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control"
+              placeholder="enter email id" [value]="(currentUser$ | async).email || ''" disabled></div>
+          <div class="col-md-12"><label class="labels">Gender</label>
+            <select class="form-control" [value]="(currentUser$ | async).gender" (change)="genderUpdate($event)">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button"
+            (click)="updateProfile()">Save
+            Profile</button></div>
+      </div>
+    </div>
+  </div>
+</div>

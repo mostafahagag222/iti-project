@@ -1,0 +1,108 @@
+<div class="site-navbar-top">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+        <div class="site-block-top-search">
+          <span class="icon icon-search2 fa fa-search"></span>
+          <input (keyup.enter)="onSearch()" #search type="text" class="form-control border-0" placeholder="Search"
+            style="background-color: aliceblue" />
+        </div>
+      </div>
+
+      <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+        <div class="site-logo">
+          <img src="/assets/images/logo.png" style="max-height: 70px; filter: invert(1)" alt="logo" />
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+        <div class="site-top-icons">
+          <ul>
+            <ng-container *ngIf="(currentUser$ | async) === null">
+              <span class="btn-group" dropdown>
+                <li>
+                  <a dropdownToggle type="button" class="icon icon-person fa fa-user dropdown-toggle"
+                    aria-controls="dropdown-basic">
+                    <span></span>
+                  </a>
+                </li>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                  <li class="w-100" role="menuitem">
+                    <a routerLink="/account/login" class="change-color dropdown-item">Login</a>
+                  </li>
+                  <li class="w-100" role="menuitem">
+                    <a routerLink="/account/register" class="change-color dropdown-item">Register</a>
+                  </li>
+                </ul>
+              </span>
+            </ng-container>
+            <ng-container *ngIf="(currentUser$ | async) !== null">
+              <span class="pr-1">Welcome {{ (currentUser$ | async).username }}</span>
+              <span class="btn-group" dropdown>
+                <li>
+                  <img [src]="(currentUser$ | async).profilePicture" dropdownToggle type="button"
+                    class="img-fluid rounded-circle mr-2" style="width: 40px; height: 40px"
+                    aria-controls="dropdown-basic" />
+                  <span></span>
+                </li>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                  <li class="w-100" role="menuitem">
+                    <a routerLink="/account/profile" class="change-color dropdown-item">Profile</a>
+                  </li>
+                  <li class="w-100" role="menuitem">
+                    <a (click)="getUserOrders()" class="change-color dropdown-item">Orders</a>
+                  </li>
+                  <li class="w-100" role="menuitem">
+                    <a (click)="logOut()" class="change-color dropdown-item">Logout</a>
+                  </li>
+                </ul>
+              </span>
+            </ng-container>
+
+            <span class="btn-group">
+              <li>
+                <a routerLink="account/wishlist"><span class="icon icon-heart-o fa fa-heart text-danger"></span></a>
+              </li>
+            </span>
+            <span class="btn-group">
+              <li>
+                <a routerLink="/basket" class="site-cart">
+                  <span class="icon icon-shopping_cart fa fa-shopping-cart"></span>
+                  <span *ngIf="basket$ | async as basket" class="count">{{
+                    basket.basketItems.length
+                    }}</span>
+                </a>
+              </li>
+            </span>
+
+            <li class="d-inline-block d-md-none ml-md-0">
+              <a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="site-navigation text-right text-md-center shadow-sm" role="navigation">
+  <div class="container">
+    <ul class="site-menu js-clone-nav d-none d-md-block">
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      </li>
+      <li>
+        <a routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Shop</a>
+      </li>
+      <li>
+        <a
+        routerLink="/about"
+        routerLinkActive="active">About</a>
+      </li>
+      <li>
+        <a routerLink="/admin" *ngIf="(currentUser$ | async)?.roles[0] === 'Admin'" routerLinkActive="active">Admin
+          Dashboard</a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,39 @@
+[
+  {
+    "Body": "Review 1",
+    "Date": "2022-04-30T14:37:21.163Z",
+    "Stars": 4,
+    "ProductId": 1
+
+  },
+  {
+    "Body": "Review 2",
+    "Date": "2022-04-30T14:37:21.163Z",
+    "Stars": 4,
+    "ProductId": 1
+  },
+  {
+    "Body": "Review 3",
+    "Date": "2022-04-30T14:37:21.163Z",
+    "Stars": 3,
+    "ProductId": 2
+  },
+  {
+    "Body": "Review 4",
+    "Date": "2022-04-30T14:37:21.163Z",
+    "Stars": 2,
+    "ProductId": 1
+  },
+  {
+    "Body": "Review 5",
+    "Date": "2022-04-30T14:37:21.163Z",
+    "Stars": 5,
+    "ProductId": 1
+  },
+  {
+    "Body": "Review 6",
+    "Date": "2022-04-30T14:37:21.163Z",
+    "Stars": 1,
+    "ProductId": 5
+  }
+]

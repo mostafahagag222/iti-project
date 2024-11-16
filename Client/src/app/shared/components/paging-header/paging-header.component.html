@@ -1,0 +1,21 @@
+<header>
+  <span *ngIf="totalCount>0">
+    Showing
+    <strong style="color: mediumslateblue;">
+      {{(pageIndex-1)*pageSize + 1}} -
+      {{
+      pageIndex*pageSize>this.totalCount
+      ? this.totalCount
+      : pageIndex*pageSize
+      }}
+    </strong>
+    of
+    <strong style="color: mediumslateblue;">
+      {{this.totalCount}}
+    </strong>
+    Results
+  </span>
+  <span *ngIf="totalCount == 0">
+    There are <strong style="color: mediumslateblue;">0</strong> results for this filter
+  </span>
+</header>

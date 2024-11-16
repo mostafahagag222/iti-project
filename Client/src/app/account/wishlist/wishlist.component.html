@@ -1,0 +1,39 @@
+<div class="site-section">
+  <div class="container">
+    <div class="row mb-5">
+      <form class="col-md-12">
+        <div class="site-blocks-table">
+          <ng-container *ngIf="(currentWishList$ | async)?.products !== null">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Image</th>
+                  <th class="product-name">Product</th>
+                  <th class="product-price">Price</th>
+                  <th class="product-remove">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let product of (currentWishList$ | async)?.products">
+                  <tr>
+                    <td class="product-thumbnail">
+                      <img routerLink="shop/{{product?.id}}" [src]="product?.pictures[0]" alt="Image" class="img-fluid">
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black ">{{product?.name}}</h2>
+                    </td>
+                    <td>{{product?.price}}</td>
+                    <td><a (click)="removeFromWishList(product?.id)" class="btn btn-primary btn-sm">X</a></td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </ng-container>
+          <ng-container *ngIf="(currentWishList$ | async)?.products === null">
+            Add Something to the wishlist
+          </ng-container>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

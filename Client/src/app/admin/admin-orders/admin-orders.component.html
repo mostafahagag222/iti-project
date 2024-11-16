@@ -1,0 +1,113 @@
+<div class="col-8 order-2 order-md-1 text-left">
+  <div class="site-block-top-search row">
+    <div class="col-7">
+      <select class="custom-select mb-4" (change)="onFilterSelected($event)">
+        <option value="3">All</option>
+        <option *ngFor="let opt of searchOption" [value]="opt.value">
+          {{ opt.name }}
+        </option>
+      </select>
+      <select class="custom-select mb-4" (change)="onSortSelected($event)">
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">
+          {{ sort.name }}
+        </option>
+      </select>
+    </div>
+    <div class="col-5">
+      <h3 class="mb-3 h6 text-uppercase text-black d-block">
+        Filter by Order Total Cost
+      </h3>
+
+      <ngx-slider
+        (userChangeEnd)="priceRangeChanged()"
+        [(value)]="this.minValue"
+        [(highValue)]="this.maxValue"
+        [options]="options"
+      ></ngx-slider>
+    </div>
+  </div>
+</div>
+
+<button
+  mat-raised-button
+  color="primary"
+  style="float: right"
+  (click)="confirmAllOrders()"
+>
+  Confirm All Orders
+</button>
+
+<div class="container mt-5">
+  <div class="row">
+    <div *ngIf="orders != undefined" class="col-12">
+      <table class="table table-hover text-center" style="cursor: pointer">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Shipping Address</th>
+            <th scope="col">Delivery Method</th>
+            <th scope="col">Order Items</th>
+            <th scope="col">Total</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td class="align-middle">{{ order.id }}</td>
+            <td class="align-middle">{{ order.buyerEmail }}</td>
+            <td class="align-middle">{{ order.orderDate | date }}</td>
+            <td class="align-middle">
+              {{ order.shipToAddress.street }} |
+              {{ order.shipToAddress.city }} |
+              {{ order.shipToAddress.state }}
+            </td>
+            <td class="align-middle">{{ order.deliveryMethod }}</td>
+            <td class="align-middle">
+              <p *ngFor="let item of order.orderItems">
+                {{ item.productName }} - Qty: {{ item.quantity }}
+              </p>
+            </td>
+            <th class="align-middle" scope="col">
+              {{ order.total | currency }}
+            </th>
+            <th class="align-middle" scope="col">{{ order.status }}</th>
+            <td class="align-middle">
+              <button mat-icon-button class="btn-primary">
+                <mat-icon (click)="showDetails(order.id)">visibility</mat-icon>
+              </button>
+              <button
+                (click)="confirmOrder(order)"
+                mat-icon-button
+                class="btn-success"
+              >
+                <mat-icon *ngIf="order.status == 'Pending'">done</mat-icon>
+                <mat-icon *ngIf="order.status == 'Confirmed'"
+                  >check_circle</mat-icon
+                >
+              </button>
+
+              <button
+                (click)="confrimDelete(order.id)"
+                mat-icon-button
+                class="btn-danger"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <mat-paginator
+    [length]="totalCount"
+    [pageSize]="6"
+    (page)="onPageChanged($event)"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

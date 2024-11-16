@@ -1,0 +1,131 @@
+<h1 *ngIf="data.action=='add'" mat-dialog-title>Add New Product</h1>
+<h1 *ngIf="data.action=='edit'" mat-dialog-title>Edit Product</h1>
+
+<div mat-dialog-content>
+
+  <form [formGroup]="productForm">
+
+    <div formGroupName="product">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product Name</mat-label>
+      <input [readonly]="data.action=='show'"  formControlName="Name" matInput placeholder="Product Name">
+
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product Category</mat-label>
+      <mat-select  [disabled]="data.action=='show'" formControlName="ProductTypeId" placeholder="Category">
+      <mat-option *ngFor="let item of data.types" [value]="item.id">{{item.name}}</mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product Brand</mat-label>
+      <mat-select  [disabled]="data.action=='show'" formControlName="ProductBrandId" placeholder="Brand">
+        <mat-option *ngFor="let item of data.brands" [value]="item.id">{{item.name}}</mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Manufacture Date</mat-label>
+      <input  [readonly]="data.action=='show'" formControlName="ManufactureDate" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="data.action=='show'"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input  [readonly]="data.action=='show'" formControlName="Price"  matInput type="number" placeholder="Price">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Units In Stock</mat-label>
+      <input  [readonly]="data.action=='show'" formControlName="UnitsInStock"  matInput type="number" placeholder="Units In Stoc">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Height</mat-label>
+      <input  [readonly]="data.action=='show'" formControlName="Height"  matInput type="number" placeholder="Height">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Width</mat-label>
+      <input  [readonly]="data.action=='show'" formControlName="Width" matInput type="number" placeholder="Width">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Length</mat-label>
+      <input   [readonly]="data.action=='show'" formControlName="Length" matInput type="number" placeholder="Length">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Weight</mat-label>
+      <input  [readonly]="data.action=='show'" formControlName="Weight" matInput type="number" placeholder="Weight">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Color</mat-label>
+      <input  [readonly]="data.action=='show'" formControlName="Color" matInput placeholder="Color">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea  [readonly]="data.action=='show'" formControlName="Description" matInput></textarea>
+    </mat-form-field>
+
+    </div>
+
+    <mat-label>Images</mat-label>
+        <br>
+        <br>
+        <div id="imageDiv"   *ngIf="hideFileInput">
+          <label id="imageLabel" for="file">
+          <i class="fa fa-2x fa-camera"></i>
+          <input
+
+          formControlName="file"
+          id="file"
+          type="file"
+
+          multiple=""
+          (change)="onFileChange($event)">
+        </label>
+
+        </div>
+
+        <carousel>
+
+            <ng-container *ngFor="let item of images">
+              <slide>
+                <img src="{{item}}"  style="display: block; width: 100%;">
+              </slide>
+            </ng-container>
+
+
+        </carousel>
+
+
+  </form>
+
+
+
+
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button *ngIf="data.action!='show'" [disabled]="productForm.invalid"    style="margin-left: 8px;" mat-raised-button color="primary" (click)="makeAction()" >{{actionBtn}}</button>
+
+</div>

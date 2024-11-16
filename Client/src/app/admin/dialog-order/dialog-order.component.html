@@ -1,0 +1,198 @@
+<div mat-dialog-content>
+  <form [formGroup]="orderForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Order ID</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="id"
+        matInput
+        placeholder="Order ID"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Buyer Email</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="buyerEmail"
+        matInput
+        placeholder="Buyer Email"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Order Date</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="orderDate"
+        matInput
+        placeholder="Order Date"
+        [matDatepicker]="picker"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker"
+        [disabled]="data.action == 'show'"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div formGroupName="shipToAddress">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input
+          [readonly]="data.action == 'show'"
+          formControlName="firstName"
+          matInput
+          placeholder="First Name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input
+          [readonly]="data.action == 'show'"
+          formControlName="lastName"
+          matInput
+          placeholder="Last Name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input
+          [readonly]="data.action == 'show'"
+          formControlName="street"
+          matInput
+          placeholder="Street"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input
+          [readonly]="data.action == 'show'"
+          formControlName="city"
+          matInput
+          placeholder="City"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>State</mat-label>
+        <input
+          [readonly]="data.action == 'show'"
+          formControlName="state"
+          matInput
+          placeholder="State"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Zipcode</mat-label>
+        <input
+          [readonly]="data.action == 'show'"
+          formControlName="zipcode"
+          matInput
+          placeholder="Zipcode"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Dilvery Method</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="deliveryMethod"
+        matInput
+        placeholder="Dilvery Method"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Shipping Price</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="shippingPrice"
+        matInput
+        placeholder="Shipping Price"
+      />
+    </mat-form-field>
+
+    <!--Order Items-->
+    <!-- <div *ngFor="let item of items.controls">
+      <div formGroupName="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Product ID</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="productId"
+            matInput
+            placeholder="Product ID"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Product Name</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="productName"
+            matInput
+            placeholder="Product Name"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="price"
+            matInput
+            placeholder="Price"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="quantity"
+            matInput
+            placeholder="Quantity"
+          />
+        </mat-form-field>
+      </div>
+    </div> -->
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sub Total</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="subtotal"
+        matInput
+        placeholder="Sub Total"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Total</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="total"
+        matInput
+        placeholder="Total"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <input
+        [readonly]="data.action == 'show'"
+        formControlName="status"
+        matInput
+        placeholder="Status"
+      />
+    </mat-form-field>
+  </form>
+</div>

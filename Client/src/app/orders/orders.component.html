@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>Order</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <th># {{ order?.id }}</th>
+            <td>{{ order?.orderDate | date: "medium" }}</td>
+            <td>{{ order?.total | currency }}</td>
+            <td>{{ order?.status }}</td>
+            <td class="align-middle">
+              <button mat-icon-button class="btn-primary m-1 rounded-circle">
+                <mat-icon (click)="showDetails(order.id)">visibility</mat-icon>
+              </button>
+              <ng-container *ngIf="order?.status == 'Pending'">
+                <button
+                  (click)="deleteOrder(order.id)"
+                  mat-icon-button
+                  class="btn-danger m-1 rounded-circle"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

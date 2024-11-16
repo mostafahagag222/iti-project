@@ -1,0 +1,15 @@
+<div class="site-wrap">
+
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#7971EA" type="ball-running-dots">
+  </ngx-spinner>
+
+  <header class="site-navbar" role="banner" style="background-color: aliceblue; position: unset;">
+    <app-nav-bar></app-nav-bar>
+    <app-section-header *ngIf="this.router.url != '/' "></app-section-header>
+  </header>
+
+  <div style="z-index: -500;">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+</div>

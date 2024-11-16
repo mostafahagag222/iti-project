@@ -1,0 +1,22 @@
+<h1 *ngIf="data.action=='add'" mat-dialog-title>Add New Type</h1>
+<h1 *ngIf="data.action=='edit'" mat-dialog-title>Edit Type</h1>
+
+
+<div mat-dialog-content>
+
+  <form [formGroup]="TypeForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Brand Name</mat-label>
+      <input [readonly]="data.action=='show'"  formControlName="Name" matInput placeholder="Brand Name">
+
+    </mat-form-field>
+
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button *ngIf="data.action!='show'" [disabled]="TypeForm.invalid"    style="margin-left: 8px;" mat-raised-button color="primary" (click)="makeAction()" >{{actionBtn}}</button>
+
+</div>
+

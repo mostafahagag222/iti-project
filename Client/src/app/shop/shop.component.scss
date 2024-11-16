@@ -1,0 +1,25 @@
+::ng-deep {
+  .ngx-slider .ngx-slider-pointer {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    top: -14px;
+    background-color: #593196 !important;
+    z-index: 3;
+    border-radius: 16px;
+}
+.ngx-slider .ngx-slider-selection {
+    z-index: 2;
+    background: #593196 !important;
+    border-radius: 2px;
+
+}
+
+.ngx-slider .ngx-slider-bubble {
+    cursor: default;
+    bottom: 16px;
+    padding: 1px 3px;
+    color: #593196 !important;
+    font-size: 14px !important;
+}
+}

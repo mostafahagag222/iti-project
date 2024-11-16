@@ -1,0 +1,37 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapse()">F</button>
+    <div class="logo-text" *ngIf="collapsed">Furntica</div>
+    <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fa fa-items fa-close"></i>
+    </button>
+  </div>
+
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of navData">
+      <a
+        class="sidenav-nav-link"
+        [routerLink]="[data.routerLink]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="sidenav-link-icon" [class]="data.icon"></i>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{
+          data.Label
+        }}</span>
+      </a>
+    </li>
+
+    <li class="sidenav-nav-item">
+      <a
+        class="sidenav-nav-link"
+        routerLink="/shop"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="fa fa-arrow-left sidenav-link-icon"></i>
+        <span class="sidenav-link-text" *ngIf="collapsed">Exit</span>
+      </a>
+    </li>
+  </ul>
+</div>

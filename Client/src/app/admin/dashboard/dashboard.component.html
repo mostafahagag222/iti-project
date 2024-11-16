@@ -1,0 +1,88 @@
+<div class="container-scroller">
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h2 class="page-title">
+          <i style="font-size: 50px;" class="fa fa-admin"></i>
+          Dashboard
+        </h2>
+      </div>
+      <div class="row grid-margin">
+        <div class="col-12">
+          <div class="card card-statistics">
+            <div class="card-body" style="background: #355C7D;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); color: azure;">
+              <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <div class="statistics-item">
+                  <p>
+                    <i class="icon-sm fa fa-user mr-2"></i>
+                    USERS
+                  </p>
+                  <h2>10</h2>
+                  <label class="badge badge-outline-success badge-pill" style="font-size: 20px;">75% increase</label>
+                </div>
+                <div class="statistics-item">
+                  <p>
+                    <i class="icon-sm fas fa-hourglass-half mr-2"></i>
+                    COMPLETED ORDERS
+                  </p>
+                  <h2>20</h2>
+                  <label class="badge badge-outline-success badge-pill" style="font-size: 20px;">30% increase </label>
+                </div>
+                <div class="statistics-item">
+                  <p>
+                    <i class="icon-sm fas fa-cloud-download-alt mr-2"></i>
+                    WAITING ORDERS
+                  </p>
+                  <h2>10</h2>
+                  <label class="badge badge-outline-success badge-pill" style="font-size: 20px;">12% increase</label>
+                </div>
+                <div class="statistics-item">
+                  <p>
+                    <i class="icon-sm fas fa-check-circle mr-2"></i>
+                    NOT COMPLETED ORDERS
+                  </p>
+                  <h2>3</h2>
+                  <label class="badge badge-outline-danger badge-pill" style="font-size: 20px;">57% decrease</label>
+                </div>
+                <div class="statistics-item">
+                  <p>
+                    <i class="icon-sm fas fa-chart-line mr-2"></i>
+                    ALL PRODUCTS
+                  </p>
+                  <h2>30</h2>
+                  <label class="badge badge-outline-success badge-pill" style="font-size: 20px;">10% increase</label>
+                </div>
+                <div class="statistics-item">
+                  <p>
+                    <i class="icon-sm fas fa-circle-notch mr-2"></i>
+                    PENDING
+                  </p>
+                  <h2>25</h2>
+                  <label class="badge badge-outline-danger badge-pill" style="font-size: 20px;">16% decrease</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main-panel ends -->
+</div>
+
+
+<div class="contianer">
+  <div class="d-flex flex-row justify-content-start align-items-center">
+    <i style="font-size: 50px;" class="fa fa-btc"></i>
+    <h1 class="mt-4 ml-2">Orders</h1>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" chartType="bar">
+      </canvas>
+    </div>
+  </div>
+</div>
